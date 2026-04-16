@@ -16,7 +16,7 @@
    - Script mode<br />
      python filename.py or py filename.py<br />
 # Variables and Data Types
-     A variable refers to a name that refers to a value stored in memory.<br />
+     A variable refers to a name that refers to a value stored in memory.
      Variables in Python:<br />
      x = 10        # integer<br >
      name = "Ram"  # string<br >
