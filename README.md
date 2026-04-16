@@ -1,6 +1,6 @@
 # AI_Intern
 # Getting Started With Python Basics
-**1. Instalation and runnig Python**
+**1. Instalation and runnig Python**<br />
    a. Download Python
    - Go to python.org
    - Choose latest stable version
