@@ -83,6 +83,23 @@ print("Hello", end=" ")   # changes line ending<br />
 print("World")            # Output: Hello World<br />
 print(1, 2, 3, sep="-")   # Output: 1-2-3<br />
 
+# Conditional Statements
+Conditional statements let you control the flow of execution based on conditions (True/False).<br />
+**if Statement**<br />
+Executes a block of chain if the condition is true<br />
+```x = 10<
+if x > 5:
+    print("x is greater than 5")```
+**if-else statement**
+Provides an alternative block if the condition is false.<br />
+```x = 3
+if x > 5:
+    print("x is greater than 5")
+else:
+    print("x is not greater than 5")```
+
+
+
 
 
 
