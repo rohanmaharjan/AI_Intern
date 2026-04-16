@@ -85,21 +85,27 @@ print(1, 2, 3, sep="-")   # Output: 1-2-3<br />
 
 # Conditional Statements
 Conditional statements let you control the flow of execution based on conditions (True/False).<br />
-**if Statement**<br />
-Executes a block of chain if the condition is true<br />
-```python
-x = 10<
-if x > 5:
-    print("x is greater than 5")```
+## if Statement
+Executes a block of code if the condition is true.
 
-**if-else statement**
-Provides an alternative block if the condition is false.<br />
+```python
+x = 10
+if x > 5:
+    print("x is greater than 5")
+```
+
+---
+
+## if-else Statement
+Provides an alternative block if the condition is false.
+
 ```python
 x = 3
 if x > 5:
     print("x is greater than 5")
 else:
-    print("x is not greater than 5")```
+    print("x is not greater than 5")
+```
 
 
 
