@@ -61,27 +61,45 @@ print(x is z)      # True (same object)<br />
 print(x is not y)  # True<br />
 # Input and Output
 **Input**<br /> Used to take data form the user. It used input() function to take data and it always returns data as a **string**.<br />
-Default input:<br />
-name = input("Enter your name: ")<br />
-print("Hello,", name)<br />
+Default input:
+```python
+name = input("Enter your name: ")
+print("Hello,", name)
+```
+
+---
+
 It always takes data as string from the user. <br />
-Converting into other data types:<br />
-age = int(input("Enter your age: "))   # converts to integer<br />
-pi = float(input("Enter value of pi: "))  # converts to float<br />
+Converting into other data types:
+```python
+age = int(input("Enter your age: "))   # converts to integer
+pi = float(input("Enter value of pi: "))  # converts to float
+```
+
+---
+
 **Output**<br />
 It is used to display data to the user. It use print() function. <br />
 print("Hello World")   # simple output<br />
 print("Name:", name)   # multiple values<br />
 print(f"Age is {age}") # formatted string (f-string)<br />
-**Formatting Output**<br />
-x = 10<br />
-y = 20<br />
+**Formatting Output**
+```python
+x = 10
+y = 20
 print("Sum of {} and {} is {}".format(x, y, x+y)) # Output: Sum of 10 and 20 is 30
-<br />
-**End and Separator Paramenters:**<br />
-print("Hello", end=" ")   # changes line ending<br />
-print("World")            # Output: Hello World<br />
-print(1, 2, 3, sep="-")   # Output: 1-2-3<br />
+```
+
+---
+
+**End and Separator Paramenters:**
+```python
+print("Hello", end=" ")   # changes line ending
+print("World")            # Output: Hello World
+print(1, 2, 3, sep="-")   # Output: 1-2-3
+```
+
+---
 
 # Conditional Statements
 Conditional statements let you control the flow of execution based on conditions (True/False).<br />
