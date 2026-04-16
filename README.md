@@ -1,6 +1,6 @@
 # AI_Intern
 # Getting Started With Python Basics
-**1. Instalation and runnig Python**<br />
+# Instalation and runnig Python
    a. Download Python
    - Go to python.org
    - Choose latest stable version<br />
@@ -15,7 +15,7 @@
      you should see >>> prompt
    - Script mode<br />
      python filename.py or py filename.py<br />
-**2. Variables and Data Types**<br />
+# Variables and Data Types
      A variable refers to a name that refers to a value stored in memory.<br />
      Variables in Python:<br />
      x = 10        # integer<br >
@@ -38,7 +38,7 @@
      - dictionary (dict): Key-value pairs e.g. student = { "name": "rohan", "age": 21 }<br />
        **Note: You can use type() function to check variable's type.**<br />
        Example: print(type(x))<br />
-**3. Operators**<br />
+# Operators>
 Operators are special symbols that perform operations on variables and values.<br /> **Types of Operators**
 - Arithemattic Operators: +, -, *, /, //(floor division), %, ** (exponent)
 - Comparision or Relational Operators: Used to compare True or False. ==, !=, >, <, <=, >=
@@ -58,7 +58,7 @@ z = x<br />
 print(x is y)      # False (different objects)<br />
 print(x is z)      # True (same object)<br />
 print(x is not y)  # True<br />
-**4. Input and Output**<br />
+# Input and Output
 **Input**<br /> Used to take data form the user. It used input() function to take data and it always returns data as a **string**.<br />
 Default input:<br />
 name = input("Enter your name: ")<br />
