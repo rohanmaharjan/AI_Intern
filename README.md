@@ -107,6 +107,54 @@ else:
     print("x is not greater than 5")
 ```
 
+---
+
+# if-elif-else statement
+Checks multiple conditions in sequence.
+```python
+marks = 75
+
+if marks >= 90:
+    print("Grade: A")
+elif marks >= 75:
+    print("Grade: B")
+elif marks >= 50:
+    print("Grade: C")
+else:
+    print("Grade: F")
+```
+
+---
+
+# nested if
+an if inside another if
+```python
+num = 15
+
+if num > 0:
+    if num % 2 == 0:
+        print("Positive even number")
+    else:
+        print("Positive odd number")
+```
+
+---
+
+# Ternary operator / shoet hand if
+Compact way to write if-else.
+```python
+x = 10
+result = "Even" if x % 2 == 0 else "Odd"
+print(result)   # Output: Even
+```
+
+---
+
+# Loops
+
+
+
+
 
 
 
