@@ -245,15 +245,149 @@ print(fruits)             # ['apple', 'mango', 'cherry', 'orange']
 
 ---
 
+**List Operations**
+```python
+nums = [1, 2, 3]
+
+nums.append(4)       # Add element -> [1,2,3,4]
+nums.insert(1, 10)   # Insert at index -> [1,10,2,3,4]
+nums.remove(2)       # Remove first occurrence -> [1,10,3,4]
+nums.pop()           # Remove last element -> [1,10,3]
+nums.pop(0)          # Remove at index -> [10,3]
+nums.sort()          # Sort ascending -> [3,10]
+nums.reverse()       # Reverse order -> [10,3]
+len(nums)            # Length -> 2
+```
+
+---
+
 # Tuple
 They are ordered and immutable collection. They are faster than lists and used for fixed data.
 ```python
 coords = (10, 20)
 print(coords[0])   # 10
-# coords[0] = 15 → Error (immutable)
+# coords[0] = 15 -> Error (immutable)
 ```
 
 ---
+
+**Tuple Operations**
+```python
+coords = (10, 20, 30)
+coords.count(10)     # Count occurrences -> 1
+coords.index(20)     # Find index -> 1
+len(coords)          # Length -> 3
+```
+
+---
+
+# Set
+Unordered, mutable collection. No duplicates are allowed.
+```python
+nums = {1, 2, 3, 3}
+print(nums)   # {1, 2, 3}
+nums.add(4)
+print(nums)   # {1, 2, 3, 4}
+```
+
+---
+
+**Set Operations**
+```python
+s = {1, 2, 3}
+
+s.add(4)             # Add element -> {1,2,3,4}
+s.remove(2)          # Remove element -> {1,3,4}
+s.discard(5)         # Remove if exists, no error
+s.clear()            # Empty set -> {}
+s1 = {1,2,3}; s2 = {3,4,5}
+s1.union(s2)         # {1,2,3,4,5}
+s1.intersection(s2)  # {3}
+s1.difference(s2)    # {1,2}
+```
+
+---
+
+# Dictionary
+They are key-value pairs. Keys must be unique and immutable.
+```python
+student = {"name": "Ram", "age": 20}
+print(student["name"])   # Ram
+student["age"] = 21      # update value
+student["grade"] = "A"   # add new key-value
+```
+
+---
+
+**Dictionary Operations**
+```python
+student = {"name": "Ram", "age": 20}
+
+student["grade"] = "A"   # Add new key-value
+student["age"] = 21      # Update value
+del student["name"]      # Delete key
+student.keys()           # dict_keys(['age','grade'])
+student.values()         # dict_values([21,'A'])
+student.items()          # dict_items([('age',21),('grade','A')])
+student.get("age")       # 21
+student.pop("grade")     # Remove key → returns 'A'
+```
+
+---
+
+# Functions
+Functions are reusable blocks of code that perform a specific task. They help make programs modular, organized, and easier to maintain.<br />
+**Defining a Function**<br />**def** function_name()
+```pyhton
+def greet():
+    print("Hello, welcome to Python!")
+```
+
+---
+
+**Calling a Function**<br />function_name()
+```python
+greet()   # Output: Hello, welcome to Python!
+```
+
+---
+
+# Functions with Parameters
+Parameters allow you to pass values into a function.
+```python
+def add(a, b):
+    return a + b
+
+result = add(5, 3)
+print(result)   # Output: 8
+```
+
+---
+
+# Default Parameters
+```python
+def greet(name="Guest"):
+    print("Hello,", name)
+
+greet()          # Output: Hello, Guest
+greet("Ram")     # Output: Hello, Ram
+```
+
+---
+
+# Return Statement
+Functions can return values using return.
+```python
+def square(x):
+    return x * x
+
+print(square(4))   # Output: 16
+```
+
+---
+
+
+
 
 
 
