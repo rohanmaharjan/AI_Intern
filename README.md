@@ -386,14 +386,213 @@ print(square(4))   # Output: 16
 
 ---
 
+# String Methods
+A string is a sequence of characters enclosed in single quotes '...', double quotes "...", or triple quotes '''...''' / """...""" (for multi-line). Strings are immutable i.e. once created, they cannot be changed directly.
+```python
+text1 = 'Hello'
+text2 = "World"
+text3 = '''This is
+a multi-line string'''
+```
 
+---
 
+**Concatenation**
+```python
+a = "Hello"
+b = "World"
+print(a + " " + b)   # Hello World
+```
 
+---
 
+**Repetition**
+```python
+print("Hi! " * 3)    # Hi! Hi! Hi!
+```
 
+---
 
+**Indexing and Slicing**
+```python
+text = "Python"
+print(text[0])       # P (first character)
+print(text[-1])      # n (last character)
+print(text[0:4])     # Pyth (slice from index 0 to 3)
+print(text[::-1])    # nohtyP (reverse string)
+```
 
+---
 
+**Length**
+```python
+print(len("Python"))   # 6
+```
+
+---
+
+**Other String Methods**
+```python
+"hello".upper()                  #"HELLO"
+"HELLO".lower()                  #hello"
+"python".capitalize()            #Python"
+"hello world".title()            #Hello world"
+" hi ".strip()                   #"hi"
+"apple".replace("a","A")         #"Apple"
+"a,b,c".split(",")               #['a', 'b', 'c']
+" ".join(["Hello","World"])      #"Hello World"
+"Python".find("th")              #2
+"banana".count("a")              #3
+```
+
+---
+
+# File Handling
+File handling allows you to create, read, write, and manage files directly from Python programs.
+# Opening a file
+Use open() function
+```python
+f = open("example.txt", "r")   # open for reading
+```
+
+---
+
+**Modes**
+- "r": read (default)
+- "w": write (creates/overwrites file)
+- "a": append (adds to end of file)
+- "b": binary mode (images, videos)
+- "x": create new file (error if exists)
+
+# Reading from a File
+```python
+f = open("example.txt", "r")
+print(f.read())       # read entire file
+print(f.readline())   # read one line
+print(f.readlines())  # read all lines into list
+f.close()
+```
+
+---
+
+# Writing to a File
+```python
+f = open("example.txt", "w")
+f.write("Hello, Python!\n")
+f.write("File handling is easy.")
+f.close()
+```
+
+---
+
+# Appending to a File
+```python
+f = open("example.txt", "a")
+f.write("\nThis line is appended.")
+f.close()
+```
+
+---
+
+# Using with
+It automatically closes file after use.
+```python
+with open("example.txt", "r") as f:
+    data = f.read()
+    print(data)
+```
+
+---
+
+**Always use seek(0) if you want to read after writing, because the file pointer moves to the end after write/apend operations**
+
+# Object-Oriented Programmig
+OOP is a programming paradigm that organizes code into objects (instances) and classes (blueprints). It helps make code more modular, reusable, and easier to maintain.
+```python
+class Car:
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
+    
+    def drive(self):
+        print(f"{self.brand} {self.model} is driving")
+
+# Create object
+my_car = Car("Toyota", "Corolla")
+my_car.drive()   # Output: Toyota Corolla is driving
+```
+
+---
+
+## Key OOP Concepts
+**Encapsulation**<br />Encapsulation is a fundamental principle of Object-Oriented Programming (OOP) that involves bundling data (attributes) and the methods that operate on that data into a single unit, typically a class. 
+```python
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance   # private attribute
+    
+    def deposit(self, amount):
+        self.__balance += amount
+    
+    def get_balance(self):
+        return self.__balance
+```
+
+---
+
+**Inheritance**<br />Allows a class to inherit properties/methods from another class.
+```python
+class Animal:
+    def speak(self):
+        print("Animal speaks")
+
+class Dog(Animal):   # Dog inherits from Animal
+    def speak(self):
+        print("Woof!")
+
+d = Dog()
+d.speak()   # Output: Woof!
+```
+
+---
+
+**Polymorphism**<br />Same method name behaves differently depending on the object.
+```python
+class Cat:
+    def speak(self):
+        print("Meow!")
+
+class Dog:
+    def speak(self):
+        print("Woof!")
+
+for pet in [Cat(), Dog()]:
+    pet.speak()
+# Output: Meow! Woof!
+```
+
+---
+
+**Abstraction**<br />Hiding implementation details, showing only essential features.
+```python
+from abc import ABC, abstractmethod
+
+class Shape(ABC):
+    @abstractmethod
+    def area(self):
+        pass
+
+class Circle(Shape):
+    def __init__(self, r):
+        self.r = r
+    def area(self):
+        return 3.14 * self.r * self.r
+
+c = Circle(5)
+print(c.area())   # 78.5
+```
+
+---
 
 
 
