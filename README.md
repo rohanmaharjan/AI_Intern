@@ -169,6 +169,92 @@ print(result)   # Output: Even
 ---
 
 # Loops
+Loops are used to repeat a block of code multiple times until a condition is met.
+# for loop
+Used to iterate over a sequence (list, tuple, string, range, etc.).
+```python
+# Using range
+for i in range(5):
+    print(i)   # Output: 0 1 2 3 4
+
+# Iterating a list
+fruits = ["apple", "banana", "cherry"]
+for fruit in fruits:
+    print(fruit)
+```
+
+---
+
+# while loop
+Repeats as long as the condition is true.
+```python
+count = 0
+while count < 5:
+    print("Count:", count)
+    count += 1
+```
+
+---
+
+# loop control statemanet
+- break --> exits loop immediately
+- continue --> skips the current iteration and moves to the next
+- else with loops --> runs if the loop finnishes normally (not interrupted by break).
+```python
+# break example
+for i in range(10):
+    if i == 5:
+        break
+    print(i)   # Output: 0 1 2 3 4
+
+# continue example
+for i in range(5):
+    if i == 2:
+        continue
+    print(i)   # Output: 0 1 3 4
+
+# else with loop
+for i in range(3):
+    print(i)
+else:
+    print("Loop finished!")  # runs after loop ends
+```
+
+---
+
+# Nested loops
+Loops inside loops.
+```python
+for i in range(3):
+    for j in range(2):
+        print(i, j)
+```
+
+---
+
+# Data Structures in Python
+Data structures are ways to store and organize data efficiently. Python provides several built-in ones.
+# List
+They are ordered and mutable collection and allows duplicates.
+```python
+fruits = ["apple", "banana", "cherry"]
+fruits.append("orange")   # add element
+fruits[1] = "mango"       # modify element
+print(fruits)             # ['apple', 'mango', 'cherry', 'orange']
+```
+
+---
+
+# Tuple
+They are ordered and immutable collection. They are faster than lists and used for fixed data.
+```python
+coords = (10, 20)
+print(coords[0])   # 10
+# coords[0] = 15 → Error (immutable)
+```
+
+---
+
 
 
 
