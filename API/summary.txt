@@ -1,0 +1,3 @@
+7-Day Weather Summary for Kathmandu
+Hottest Day: 2026-04-23 = 31.6 C
+Coldest Day: 2026-04-27 = 25.7 C
