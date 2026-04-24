@@ -59,9 +59,28 @@ for country_name, country_code in countries.items():
     #prevent api rate limit
     time.sleep(3)
 
-print("\nTotal headlines fetched: ", len(all_news))
 
-for item in all_news[:5]:
-    print(item)
+
+# print("\nTotal headlines fetched: ", len(all_news))
+
+# for item in all_news[:5]:
+#     print(item)
         
+df = pd.DataFrame(all_news)
+
+#clean column names
+df.columns = df.columns.str.lower().str.strip()
+
+#Replace missing values with N/A
+df.fillna("N/A", inplace=True)
+
+#save to csv
+df.to_csv("news_data.csv", index=False)
+
+# print("\nCSV file created successfully: news_data.csv")
+# print("Total rows saved:", len(df))
+
+# Preview first 5 rows
+# print("\nPreview of saved data:")
+# print(df.head())
 
