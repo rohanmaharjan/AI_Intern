@@ -8,7 +8,7 @@ import time
 #load environment variables
 load_dotenv()
 
-url = os.getenv("BASE_URL")
+url = "https://gnews.io/api/v4/top-headlines"
 api_key = os.getenv("API_KEY")
 
 #countries to fetch
