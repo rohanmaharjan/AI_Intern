@@ -84,3 +84,41 @@ df.to_csv("news_data.csv", index=False)
 # print("\nPreview of saved data:")
 # print(df.head())
 
+#prevent duplicate rows
+new_df = pd.DataFrame(all_news)
+
+#clean column names
+new_df.columns = new_df.columns.str.lower().str.strip()
+
+#replace missing values with N/A
+new_df.fillna("N/A", inplace=True)
+
+#file name of main csv
+file_name = "news_data.csv"
+
+#check if csv already exists
+if os.path.exists(file_name):
+    print("Old CSV Found! Checking for Duplicates")
+
+    # Read old CSV
+    old_df = pd.read_csv(file_name)
+
+    # Combine old + new data
+    combined_df = pd.concat([old_df, new_df], ignore_index=True)
+
+    # Remove duplicate rows using URL
+    combined_df.drop_duplicates(subset=["url"], inplace=True)
+
+    # Save cleaned data back to CSV
+    combined_df.to_csv(file_name, index=False)
+
+    print("Duplicates removed successfully.")
+    print("Final total rows:", len(combined_df))
+else:
+    print("No old CSV found. Creating new CSV...")
+
+    # First time run and just save directly
+    new_df.to_csv(file_name, index=False)
+
+    print("CSV created successfully.")
+    print("Total rows saved:", len(new_df))
