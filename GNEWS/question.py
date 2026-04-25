@@ -94,6 +94,41 @@ print(f"{older_percentage:.2f} % headlines were published older than 6 hours")
 
 #question 7
 print("\nSave only headlines with a title longer than 6 words to a CSV. How many passed that filter?")
+df["word_count"] = df["title"].str.strip().str.split().str.len()
+# print(df[["title","word_count"]])
+
+# Filter only headlines with more than 6 words
+filtered_df = df[df["word_count"] > 6]
+
+title_file = "title.csv"
+
+#clean column names
+filtered_df.columns = filtered_df.columns.str.lower().str.strip()
+
+#Replace missing values with N/A
+filtered_df.fillna("N/A", inplace=True)
+
+#save to csv
+filtered_df.to_csv(title_file, index=False)
+
+print("\nFile successfully created, ", title_file)
+print(f"{len(filtered_df)} headlines passed that filter (title longer than 6 words)")
 
 #question 8
 print("\nWhich country had the longest headline on average and which had the shortest?")
+# avg_headline_length = df.groupby("country")["word_count"].mean()
+
+print(avg_words_per_country)#from question 2
+
+#longest headline on average
+longest_country = avg_words_per_country.idxmax()
+longest_avg = avg_words_per_country.max()
+
+#shortest headline on average
+shortest_country = avg_words_per_country.idxmin()
+shortest_avg = avg_words_per_country.min()
+
+print(f"{longest_country} has the longest headline on average, {longest_avg:.2f}")
+print(f"{shortest_country} has the longest headline on average, {shortest_avg:.2f}")
+
+

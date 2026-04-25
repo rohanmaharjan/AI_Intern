@@ -8,7 +8,7 @@ Answer: No, even if i run this script twice or even more, it does not create any
     1. When the script runs, the new headlines are fetched from the GNEws API.
         response = requests.get(url, params=params)
         and changes JSON response into Python Dictionary format using
-        data = response.json()
+        news_data = response.json()
     2. The script checks whether the news_data.csv already exists or not.
         if os.path.exists(file_name):
             print("Old CSV Found! Checking for Duplicates")
