@@ -1,4 +1,5 @@
 import pandas as pd
+from datetime import datetime, timezone, timedelta
 
 df = pd.read_csv("news_data.csv")
 
@@ -65,10 +66,31 @@ max_source_count = source_counts.max()
 print(f"{top_source} published most headlines ({max_source_count}) across all 5 countries.")
 
 #question 5
-print("\nWhat percentage of all headlines were published in the kast 6 hours vs older than 6 hours")
+print("\nWhat percentage of all headlines were published in the last 6 hours vs older than 6 hours")
+#current time
+current_time = datetime.now(timezone.utc)
 
-#question 6
-print("If you run your script twice, does your database end up with duplicate rows? How did you prevent that?")
+#convert published_at column to datetime
+df["published_at"] = pd.to_datetime(df["published_at"], errors = "coerce")
+
+#time difference
+df["time_difference"] = current_time - df["published_at"]
+
+#headlines published within last 6 hours
+recent_headlines = df[df["time_difference"] <= timedelta(hours=6)]
+#headlines published older than 6 hours
+older_headlines = df[df["time_difference"] > timedelta(hours=6)]
+
+num_recent = len(recent_headlines)
+num_older = len(older_headlines)
+
+total_headlines = len(df)
+
+recent_percentage = ((num_recent/total_headlines)*100)
+older_percentage = ((num_older/total_headlines)*100)
+
+print(f"{recent_percentage:.2f} % headlines were published in last 6 hours")
+print(f"{older_percentage:.2f} % headlines were published older than 6 hours")
 
 #question 7
 print("\nSave only headlines with a title longer than 6 words to a CSV. How many passed that filter?")

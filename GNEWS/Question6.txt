@@ -1,0 +1,23 @@
+If you run your script twice, does your database end up with duplicate rows? How did you prevent that?
+Answer: No, even if i run this script twice or even more, it does not create any duplication of rows.
+    I prevented duplicates by using the url column as a unique identifier for each news article. The url
+    is used as unique identifier because a the URL of a news article is unique for every article, while
+    title can be repeated. So even the script is executed multiple times, the CSV file remains clean and
+    doesnot allow duplication of any rows.
+
+    1. When the script runs, the new headlines are fetched from the GNEws API.
+        response = requests.get(url, params=params)
+        and changes JSON response into Python Dictionary format using
+        data = response.json()
+    2. The script checks whether the news_data.csv already exists or not.
+        if os.path.exists(file_name):
+            print("Old CSV Found! Checking for Duplicates")
+    3. If it exists, the old CSV data is loaded using pandas.read_csv()
+        old_df = pd.read_csv(file_name)
+    4. The old data and new fetched data are combined.
+        combined_df = pd.concat([old_df, new_df], ignore_index=True)
+    5. Then duplicates are removed using url.
+        combined_df.drop_duplicates(subset=["url"], inplace=True)
+    6. Save cleaned data back to CSV
+        combined_df.to_csv(file_name, index=False)
+ 
