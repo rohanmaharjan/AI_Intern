@@ -30,7 +30,7 @@ for country_name, country_code in countries.items():
     params = {
         "country": country_code,
         "lang": "en",
-        "max": 10,
+        "max": 100,
         "token": api_key
     }
 
