@@ -1,3 +1,23 @@
+'''
+You are given access to the GNews API (free tier at gnews.io).
+
+Build a complete automated data pipeline that answers the following questions:
+1. Which country out of Nepal, India, USA, UK and Australia published the most headlines today?
+2. What is the average number of words in a headline title — per country?
+3. Are there any headlines that appeared in more than one country? If yes, which ones?
+4. Which news source published the most headlines across all 5 countries combined?
+5. What percentage of all headlines were published in the last 6 hours vs older than 6 hours?
+6. If you run your script twice, does your database end up with duplicate rows? How did you prevent that?
+7. Save only headlines with a title longer than 6 words to a CSV. How many passed that filter?
+8. Which country had the longest headline on average — and which had the shortest?
+
+Rules:
+1. All fetched data must be saved to a CSV file first — answer every question by reading from that CSV, not from the API response directly
+2. CSV must have clean column names — no spaces, all lowercase
+3. If a field is missing from the API response, write "N/A" — never leave a cell empty
+4. Running the script twice must not create duplicate rows in the CSV
+'''
+
 import requests
 import csv
 import pandas as pd
