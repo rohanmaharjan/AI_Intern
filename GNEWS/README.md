@@ -103,7 +103,8 @@ df.fillna("N/A", implace = True)
 # Reading and Writing CSV
 ```python
 filename = "filename.csv"
-df.to_csv(filename, index=False) df = pd.read_csv(filename)
+df.to_csv(filename, index=False)
+df = pd.read_csv(filename)
 ```
 
 ---
