@@ -167,6 +167,11 @@ with open("summary.txt", "w", encoding="utf-8") as file:
 print("\nsummary.txt file created successfully!")
 
 # Close connection
+
+#for delete purpose
+# cursor.execute("DELETE FROM forecasts")
+# conn.commit()
+
 cursor.close()
 conn.close()
 

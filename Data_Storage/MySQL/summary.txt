@@ -1,5 +1,4 @@
 WEEKLY WEATHER SUMMARY REPORT
-========================================
 
 Query 1: Highest Average Max Temperature
 City: Sarlahi, Average Max Temperature: 31.21°C
