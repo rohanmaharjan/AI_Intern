@@ -1,0 +1,20 @@
+WEEKLY WEATHER SUMMARY REPORT
+========================================
+
+Query 1: Highest Average Max Temperature
+City: Sarlahi, Average Max Temperature: 31.21°C
+
+Query 2: Single Hottest Day
+City: Sarlahi, Date: 2026-05-04, Max Temp: 32.8°C
+
+Query 3: Days with Temp Difference > 10°C
+City: Humla, Date: 2026-05-01, Max: 18.0°C, Min: 6.2°C, Difference: 11.80°C
+City: Sarlahi, Date: 2026-05-06, Max: 31.9°C, Min: 20.5°C, Difference: 11.40°C
+City: Sarlahi, Date: 2026-05-03, Max: 32.1°C, Min: 20.9°C, Difference: 11.20°C
+City: Lalitpur, Date: 2026-05-04, Max: 24.6°C, Min: 13.5°C, Difference: 11.10°C
+City: Humla, Date: 2026-05-04, Max: 16.4°C, Min: 5.6°C, Difference: 10.80°C
+City: Sarlahi, Date: 2026-05-02, Max: 30.9°C, Min: 20.5°C, Difference: 10.40°C
+City: Sarlahi, Date: 2026-05-04, Max: 32.8°C, Min: 22.4°C, Difference: 10.40°C
+City: Humla, Date: 2026-05-02, Max: 17.7°C, Min: 7.4°C, Difference: 10.30°C
+City: Sarlahi, Date: 2026-05-01, Max: 30.0°C, Min: 19.7°C, Difference: 10.30°C
+City: Lalitpur, Date: 2026-05-06, Max: 24.2°C, Min: 14.0°C, Difference: 10.20°C
