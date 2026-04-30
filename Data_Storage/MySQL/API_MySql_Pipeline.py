@@ -1,4 +1,4 @@
-import requests, csv
+import requests
 import mysql.connector
 from dotenv import load_dotenv
 import os
@@ -6,8 +6,9 @@ import os
 load_dotenv()
 
 url_users = "https://jsonplaceholder.typicode.com/users"
+url_posts = "https://jsonplaceholder.typicode.com/posts"
 
-
+# fetch for users
 try:
     response = requests.get(url_users)
     response.raise_for_status()
@@ -92,8 +93,7 @@ for row in cursor.fetchall():
 # Query 2
 # Find users from the same city (GROUP BY city, HAVING COUNT > 1)
 
-print("\n--- Lists of users form same city")
-print("\n--- Query 2: Users From Same City ---")
+print("\n--- Lists of users form same city ---")
 
 cursor.execute("""
 SELECT city, COUNT(*) AS total_users
@@ -107,7 +107,73 @@ results = cursor.fetchall()
 for row in results:
     print(f"City: {row[0]}, Total Users: {row[1]}")
 
+# creating table posts
+cursor.execute(
+"""
+CREATE TABLE IF NOT EXISTS posts(
+    id INT PRIMARY KEY,
+    user_id INT,
+    title TEXT,
+    body TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+)
+"""
+)
 
+# fetch for posts
+try:
+    response = requests.get(url_posts)
+    response.raise_for_status()
+    posts = response.json()
+    print("Posts API fetched successfully!")
+except requests.exceptions.RequestException as e:
+    print("Error fetching posts API:", e)
+    exit()
 
+posts = response.json()
+
+# filter posts only by user_id 1, 2, 3
+posts_data = []
+for post in posts:
+    if post["userId"] in [1, 2, 3]:
+        posts_data.append((
+            post["id"],
+            post["userId"],
+            post["title"],
+            post["body"]
+        ))
+
+insert_posts = """
+INSERT INTO posts (id, user_id, title, body)
+VALUES (%s, %s, %s, %s)
+ON DUPLICATE KEY UPDATE
+title = VALUES(title),
+body = VALUES(body)
+"""
+
+cursor.executemany( insert_posts, posts_data)
+conn.commit()
+print("Posts data inserted successfully")
+
+# BONUS CHECK
+# Show inserted posts
+print("\n--- Posts inserted for user_id 1, 2, 3 ---")
+
+cursor.execute("""
+SELECT id, user_id, title
+FROM posts
+ORDER BY user_id
+""")
+
+results = cursor.fetchall()
+
+for row in results:
+    print(
+        f"Post ID: {row[0]}, "
+        f"User ID: {row[1]}, "
+        f"Title: {row[2]}"
+    )
+
+# close connections
 cursor.close()
 conn.close()
