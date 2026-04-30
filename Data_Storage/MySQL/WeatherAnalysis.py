@@ -30,6 +30,9 @@ cursor = conn.cursor()
 cursor.execute("CREATE DATABASE IF NOT EXISTS weather")
 cursor.execute("USE weather")
 
+# drop old table
+cursor.execute("DROP TABLE IF EXISTS forecasts")
+
 # create table forecasts
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS forecasts (
@@ -38,7 +41,8 @@ CREATE TABLE IF NOT EXISTS forecasts (
     date DATE,
     max_temp FLOAT,
     min_temp FLOAT,
-    humidity FLOAT
+    humidity FLOAT,
+    UNIQUE KEY unique_city_date (city, date) # unique as one city should have only one forcast per date
 )
 """)
 
@@ -79,11 +83,17 @@ for city, location in cities.items():
         print(f"{city} weather data fetched successfully!")
 
         for i in range(7):
-            cursor.execute("""
+            insert_query = """
             INSERT INTO forecasts
             (city, date, max_temp, min_temp, humidity)
             VALUES (%s, %s, %s, %s, %s)
-            """, (
+            ON DUPLICATE KEY UPDATE
+            max_temp = VALUES(max_temp),
+            min_temp = VALUES(min_temp),
+            humidity = VALUES(humidity)
+            """
+
+            cursor.execute(insert_query, (
                 city,
                 dates[i],
                 max_temps[i],
@@ -175,4 +185,4 @@ print("\nsummary.txt file created successfully!")
 cursor.close()
 conn.close()
 
-print("\nWeather API → MySQL Task Completed Successfully!")
+print("\nWeather API --> MySQL Task Completed Successfully!")
