@@ -30,7 +30,7 @@ import pandas as pd
 
 load_dotenv()
 
-def open_database():
+def connect_database():
     conn = mysql.connector.connect(
             host="localhost",
             user="root",
@@ -62,7 +62,7 @@ def create_database():
 #Create table function
 def create_table():
     try:
-        conn, cursor = open_database()
+        conn, cursor = connect_database()
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS dogs (
             id INT PRIMARY KEY,
@@ -121,7 +121,7 @@ def fetch_data():
 # store dog data
 def store_data(dog_data):
     try:
-        conn, cursor = open_database()
+        conn, cursor = connect_database()
         # insert ignore used to avoid duplication while running script again
         insert_query = """
         INSERT IGNORE INTO dogs
@@ -167,7 +167,7 @@ def store_data(dog_data):
 # analyze data
 def run_report():
     try:
-        conn, cursor = open_database()
+        conn, cursor = connect_database()
 
         # Query 1: Dogs with longest lifespan
         print("\nQuery 1: Top 10 Dogs with Longest Lifespan")
