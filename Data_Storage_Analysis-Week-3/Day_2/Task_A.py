@@ -15,6 +15,7 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime,timedelta
 import random
+import csv
 
 load_dotenv()
 
@@ -195,11 +196,11 @@ def solve_queries(conn, cursor):
         """
         
         cursor.execute(query_one)
-        # results = cursor.fetchall()
-        # return results
+        results = cursor.fetchall()
         print("\nRevenue per Customers: \n")
-        for row in cursor.fetchall():
+        for row in results:
             print(row)
+        
         
     except mysql.connector.Error as e:
         print(f"Error in Query 1: {e}")
@@ -209,7 +210,7 @@ def solve_queries(conn, cursor):
     try:
         cursor.execute("USE store_db")
         
-        query = """
+        query_two = """
         SELECT 
             p.product_id,
             p.name,
@@ -222,7 +223,7 @@ def solve_queries(conn, cursor):
         LIMIT 1
         """
         
-        cursor.execute(query)
+        cursor.execute(query_two)
         # result = cursor.fetchone()  # Get only the first (top) result
         # return result
         print("\nMost ordered product by total quantity")
@@ -238,7 +239,7 @@ def solve_queries(conn, cursor):
     try:
         cursor.execute("USE store_db")
         
-        query = """
+        query_three = """
         SELECT 
             c.customer_id,
             c.name,
@@ -251,7 +252,7 @@ def solve_queries(conn, cursor):
         ORDER BY order_count DESC
         """
         
-        cursor.execute(query)
+        cursor.execute(query_three)
         # results = cursor.fetchall()
         # return results
         print("\nCustomers who placed more than 2 orders: \n")
@@ -266,7 +267,7 @@ def solve_queries(conn, cursor):
     try:
         cursor.execute("USE store_db")
         
-        query = """
+        query_four = """
         SELECT 
             c.city,
             COUNT(o.order_id) AS total_orders,
@@ -278,7 +279,7 @@ def solve_queries(conn, cursor):
         ORDER BY avg_order_value DESC
         """
         
-        cursor.execute(query)
+        cursor.execute(query_four)
         # results = cursor.fetchall()
         # return results
         print("\nAverage order value per city:\n")
@@ -289,7 +290,27 @@ def solve_queries(conn, cursor):
         print(f"✗ Error in Query 4: {e}")
         return []
     finally:
+        
         cursor.close()
+        return results
+
+def export_to_csv(filename,headers,data):
+    try:
+        with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+            # DictWriter allows us to write dictionaries as rows
+            writer = csv.DictWriter(csvfile, fieldnames=headers)
+            
+            # Write header row
+            writer.writeheader()
+            
+            # Write all data rows
+            writer.writerows(data)
+        
+        print(f"✓ Successfully exported results to {filename}")
+        
+    except IOError as e:
+        print(f"✗ Error writing CSV file: {e}")
+
 
 def main():
     conn, cursor = create_connection()
@@ -306,7 +327,21 @@ def main():
     insert_data(conn, cursor)
 
     cursor = conn.cursor()
-    solve_queries(conn, cursor)
+    
+
+    revenue_data = solve_queries(conn, cursor)
+    if revenue_data:
+        # Prepare data for CSV export
+        export_data = []
+        for row in revenue_data:
+            export_data.append({
+                'Customer ID': row[0],
+                'Name': row[1],
+                'City': row[2],
+                'Total Spent': f"${row[3]:.2f}"
+            })
+
+    export_to_csv('revenue_data.csv',['Customer ID', 'Name', 'City', 'Total Spent'],export_data)
 
     conn.close()
 
