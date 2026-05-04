@@ -150,7 +150,7 @@ def insert_data(conn, cursor):
         
         # Generate 20 orders with random combinations
         orders_data = []
-        base_date = datetime(2024, 1, 1)
+        base_date = datetime(2026, 1, 1)
         
         # We create 20 orders spread across our 10 customers
         for i in range(20):
@@ -175,7 +175,121 @@ def insert_data(conn, cursor):
         conn.rollback()  # Undo any partial insertions
     finally:
         cursor.close()
+
+def solve_queries(conn, cursor):
+    # Query 1:Total Money Spent Per Customer
+    try:
+        cursor.execute("USE store_db")
+        
+        query_one = """
+        SELECT 
+            c.customer_id,
+            c.name,
+            c.city,
+            SUM(p.price * o.quantity) AS total_spent
+        FROM customers c
+        INNER JOIN orders o ON c.customer_id = o.customer_id
+        INNER JOIN products p ON o.product_id = p.product_id
+        GROUP BY c.customer_id, c.name, c.city
+        ORDER BY total_spent DESC
+        """
+        
+        cursor.execute(query_one)
+        # results = cursor.fetchall()
+        # return results
+        print("\nRevenue per Customers: \n")
+        for row in cursor.fetchall():
+            print(row)
+        
+    except mysql.connector.Error as e:
+        print(f"Error in Query 1: {e}")
+        return []
     
+    # Query 2:Most Ordered Product By Total Quantity
+    try:
+        cursor.execute("USE store_db")
+        
+        query = """
+        SELECT 
+            p.product_id,
+            p.name,
+            p.category,
+            SUM(o.quantity) AS total_quantity
+        FROM products p
+        LEFT JOIN orders o ON p.product_id = o.product_id
+        GROUP BY p.product_id, p.name, p.category
+        ORDER BY total_quantity DESC
+        LIMIT 1
+        """
+        
+        cursor.execute(query)
+        # result = cursor.fetchone()  # Get only the first (top) result
+        # return result
+        print("\nMost ordered product by total quantity")
+        for row in cursor.fetchone():
+            print(row)
+        
+    except mysql.connector.Error as e:
+        print(f"Error in Query 1: {e}")
+        return []
+    
+    # QUERY 3: Customers Who Placed More Than 2 Orders
+
+    try:
+        cursor.execute("USE store_db")
+        
+        query = """
+        SELECT 
+            c.customer_id,
+            c.name,
+            c.city,
+            COUNT(o.order_id) AS order_count
+        FROM customers c
+        INNER JOIN orders o ON c.customer_id = o.customer_id
+        GROUP BY c.customer_id, c.name, c.city
+        HAVING COUNT(o.order_id) > 2
+        ORDER BY order_count DESC
+        """
+        
+        cursor.execute(query)
+        # results = cursor.fetchall()
+        # return results
+        print("\nCustomers who placed more than 2 orders: \n")
+        for row in cursor.fetchall():
+            print(row)
+        
+    except mysql.connector.Error as e:
+        print(f"✗ Error in Query 3: {e}")
+        return []
+    
+    # QUERY 4: Average Order Value Per City (GROUP BY + AVG + Multiple Joins)
+    try:
+        cursor.execute("USE store_db")
+        
+        query = """
+        SELECT 
+            c.city,
+            COUNT(o.order_id) AS total_orders,
+            AVG(p.price * o.quantity) AS avg_order_value
+        FROM customers c
+        INNER JOIN orders o ON c.customer_id = o.customer_id
+        INNER JOIN products p ON o.product_id = p.product_id
+        GROUP BY c.city
+        ORDER BY avg_order_value DESC
+        """
+        
+        cursor.execute(query)
+        # results = cursor.fetchall()
+        # return results
+        print("\nAverage order value per city:\n")
+        for row in cursor.fetchall():
+            print(row)
+        
+    except mysql.connector.Error as e:
+        print(f"✗ Error in Query 4: {e}")
+        return []
+    finally:
+        cursor.close()
 
 def main():
     conn, cursor = create_connection()
@@ -190,6 +304,9 @@ def main():
 
     cursor = conn.cursor()
     insert_data(conn, cursor)
+
+    cursor = conn.cursor()
+    solve_queries(conn, cursor)
 
     conn.close()
 
