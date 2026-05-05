@@ -289,8 +289,7 @@ def solve_queries(conn, cursor):
     except mysql.connector.Error as e:
         print(f"✗ Error in Query 4: {e}")
         return []
-    finally:
-        
+    finally:    
         cursor.close()
         return results
 
