@@ -6,11 +6,10 @@ import requests
 
 url = "https://jsonplaceholder.typicode.com/users"
 
-response = requests.get(url)
+try:
+    response = requests.get(url)
+    response.raise_for_status()
 
-# print(response.status_code)
-
-if response.status_code == 200:
     users = response.json()
 
     # print("name     email   city")
@@ -18,4 +17,7 @@ if response.status_code == 200:
     for user in users:
         # print(user["name"],"  |  ", user["email"],"  |  ", user["address"]["city"])
         print(f'Name: {user["name"]} \t\t Email: {user["email"]} \t\t City: {user["address"]["city"]}')
+
+except Exception as e:
+    print("exception occured")
 
