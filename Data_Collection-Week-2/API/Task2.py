@@ -8,14 +8,17 @@ Then read the CSV back and print only posts where title contains more than 5 wor
 1. fixed issue where file was read but never used
 2. exception handling
 '''
-import requests
+import urllib.request
+import json
 import csv
 
 url = "https://jsonplaceholder.typicode.com/posts/"
+
 try:
-    response = requests.get(url)
-    response.raise_for_status()
-    posts = response.json()
+    # API request using urllib
+    with urllib.request.urlopen(url) as response:
+        data = response.read().decode("utf-8")
+        posts = json.loads(data)
 
     # write csv
     with open("posts.csv", "w", newline="") as file:
@@ -30,7 +33,7 @@ try:
          for row in reader:
             words = row["title"].split()
             if len(words)>5:
-                print(f'Id: {post["id"]} \t\t Title: {post["title"]} \t\t Body: {post["body"]}')
+                print(f'Id: {row["id"]} \t\t Title: {row["title"]} \t\t Body: {row["body"]}')
         
 
 except Exception as e:
