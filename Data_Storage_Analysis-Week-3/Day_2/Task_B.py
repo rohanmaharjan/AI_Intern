@@ -13,7 +13,8 @@ Wrap every API call and DB operation in try/except with printed error messages.
 Deliverable: MySQL monitor_db with both tables populated + Python script
 """
 
-import requests
+import urllib.request
+import json
 import mysql.connector
 from datetime import datetime
 from dotenv import load_dotenv
@@ -85,16 +86,19 @@ def setup_database():
         print("Error creating database/tables:", e)
 
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 
 # FETCH API DATA
 def fetch_posts():
     try:
-        response = requests.get(API_URL)
-        response.raise_for_status()
-        return response.json()
+         with urllib.request.urlopen(API_URL) as response:
+            data = response.read().decode("utf-8")
+            posts = json.loads(data)
+            return posts
     except Exception as e:
         print("Error fetching API:", e)
         return []
@@ -156,8 +160,10 @@ def process_posts(posts_data):
         print("Error in processing:", e)
 
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 
 # ANALYTICS OUTPUT
@@ -199,8 +205,10 @@ def print_reports():
         print("Error generating reports:", e)
 
     finally:
-        cursor.close()
-        conn.close()
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
 
 
 # MAIN EXECUTION
