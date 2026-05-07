@@ -10,7 +10,9 @@ Find the hottest and coldest day.
 3. used exception handling
 '''
 
-import requests
+import urllib.request
+import urllib.parse
+import json
 import csv
 
 url = "https://api.open-meteo.com/v1/forecast"
@@ -22,12 +24,15 @@ params = {
     "timezone": "auto"
 }
 
-try:
-    # API request
-    response = requests.get(url, params=params)
-    response.raise_for_status()   # Raises HTTPError if bad response
+# Encode parameters into URL
+query_string = urllib.parse.urlencode(params)
+full_url = f"{url}?{query_string}"
 
-    weather_data = response.json()
+try:
+    # API request using urllib
+    with urllib.request.urlopen(full_url) as response:
+        data = response.read().decode("utf-8")
+        weather_data = json.loads(data)
 
     # Extract data
     dates = weather_data["daily"]["time"]
