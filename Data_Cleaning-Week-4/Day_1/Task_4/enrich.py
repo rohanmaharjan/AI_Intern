@@ -12,7 +12,7 @@ try:
     df["passed"] = df["score"] >= 50
 
     # score category 'High' (≥80), 'Medium' (50–79), 'Low' (<50)
-    def store_category(score):
+    def score_category(score):
         if score>=80:
             return "High"
         elif score>=50:
@@ -20,7 +20,7 @@ try:
         else:
             return "Low"
         
-    df["score_category"] = df["score"].apply(store_category)
+    df["score_category"] = df["score"].apply(score_category)
 
     # ranking students
     df["rank"] = df["score"].rank(ascending=False,method="min").astype(int)
@@ -59,13 +59,17 @@ try:
         values="score",
         index="grade",
         columns="subject",
-        aggfunc="mean"
+        aggfunc="mean",
+        fill_value=0
     )
 
     print(pivot_table)
 
     # sort by rank and reset index
     df = df.sort_values(by="rank").reset_index(drop=True)
+
+    print("\nFINAL DATAFRAME INFO")
+    print(df.info())
 
     # save enriched CSV
     output_file = "enriched_students.csv"
