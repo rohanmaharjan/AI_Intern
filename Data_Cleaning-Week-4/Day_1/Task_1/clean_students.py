@@ -27,8 +27,10 @@ whitespace_fixed = 0
 casing_fixed = 0
 
 # fix null values
+# remove rows with missing student names
 null_fixed = df["name"].isnull().sum()
-df["name"] = df["name"].fillna("Unknown")
+
+df = df.dropna(subset=["name"]).reset_index(drop=True)
 
 # fix whitespace in all string columns
 before_whitespace = df.copy()
@@ -66,6 +68,11 @@ before_duplicates = len(df)
 df = df.drop_duplicates(subset=["name", "score"])
 
 duplicates_removed = before_duplicates - len(df)
+
+# reset student IDs
+df = df.reset_index(drop=True)
+
+df["id"] = range(1, len(df) + 1)
 
 # ADD GRADE COLUMN
 def calculate_grade(score):
