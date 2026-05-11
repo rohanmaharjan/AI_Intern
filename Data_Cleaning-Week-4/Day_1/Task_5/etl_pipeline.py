@@ -16,8 +16,15 @@ def extract_data(api_url):
     print("Fetching data from API...")
 
     try:
+        # Create request with headers
+        req = request.Request(
+            api_url,
+            headers={
+                "User-Agent": "Mozilla/5.0"
+            }
+        )
         # Open API connection
-        response = request.urlopen(api_url)
+        response = request.urlopen(req)
 
         # Read and decode response
         data = response.read().decode("utf-8")
