@@ -30,11 +30,15 @@ casing_fixed = 0
 null_fixed = df["name"].isnull().sum()
 df["name"] = df["name"].fillna("Unknown")
 
-# fix whitespace
-before_whitespace = df["name"].copy()
-df["name"] = df["name"].str.strip()
+# fix whitespace in all string columns
+before_whitespace = df.copy()
 
-whitespace_fixed = (before_whitespace != df["name"]).sum()
+for col in df.select_dtypes(include="object").columns:
+    df[col] = df[col].str.strip()
+
+whitespace_fixed = (
+    before_whitespace.astype(str) != df.astype(str)
+).sum().sum()
 
 # fix casing
 before_case = df["name"].copy()
@@ -59,7 +63,7 @@ invalid_score_fixed += negative_score
 
 # remove duplicates
 before_duplicates = len(df)
-df = df.drop_duplicates()
+df = df.drop_duplicates(subset=["name", "score"])
 
 duplicates_removed = before_duplicates - len(df)
 
