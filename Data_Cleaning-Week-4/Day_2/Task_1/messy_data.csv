@@ -1,0 +1,22 @@
+id,name,email,city,phone,age,salary
+1,  Leanne Graham  ,LEANNE@EXAMPLE.COM,New York,123-456-7890,28,55000
+2,Ervin Howell,ervin@example.com,Los Angeles,987-654-3210,35,62000
+3,Clementine Bauch,clementine@example.com,Chicago,555-666-7777,31,58000
+4,Patricia Lebsack,patricia@example.com,Houston,444-555-6666,,61000
+5,Chelsey Dietrich,chelsey@example.com,Phoenix,333-222-1111,29,not_available
+6,Mrs. Dennis Schulist,dennis@example.com,Philadelphia,222-333-4444,45,72000
+7,Kurtis Weissnat,kurtis@example.com,San Antonio,111-999-8888,150,2000000
+8,Nicholas Runolfsdottir,nicholas@example.com,San Diego,888-777-6666,32,64000
+9,Glenna Reichert,glenna@example.com,Dallas,777-666-5555,27,59000
+10,Clementina DuBuque,clementina@example.com,San Jose,666-555-4444,30,61000
+11,Leanne Graham,leanne@example.com,Boston,123-456-7890,28,55000
+12,ERVIN HOWELL,ervin@example.com,Los Angeles ,987-654-3210,35,62000
+13,  John Doe,john@example,Miami,999-888-7777,twenty,45000
+14,Jane Smith,jane@example.com,Seattle,,26,53000
+15,,missingname@example.com,Denver,222-111-0000,33,57000
+16,Alice Johnson,alice@example.com,,111-222-3333,29,60000
+17,Bob Brown,bob@example.com,Atlanta,444-333-2222,-5,50000
+18,Chris Green,chris@example.com,Las Vegas,1231231234,40,
+19,David White,david@example.com,Portland,8889990000,38,67000
+20,Eve Black,eve@example.com, Austin ,7778889999,31,65000
+20,Eve Black,eve@example.com, Austin ,7778889999,31,65000
