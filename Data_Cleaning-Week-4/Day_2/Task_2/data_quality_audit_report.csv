@@ -1,0 +1,8 @@
+Metric,Value,Description
+Row Count (Before Cleaning),100,Number of rows in the DataFrame before any cleaning or transformations.
+Title Casing Inconsistencies (Before Cleaning),100,Number of titles not in proper title case before cleaning.
+Row Count (After Cleaning),50,Number of rows in the DataFrame after cleaning and transformations.
+Inconsistent String Formats Fixed,100,Number of inconsistent string formats fixed fixed during cleaning.
+Rows Removed By Filtering,50,Number of rows removed by filtering fixed during cleaning.
+Total Issues Existed (Before Cleaning),100,"Sum of all detected quantifiable issues before cleaning (nulls, duplicates, string formats)."
+Total Issues Fixed (After Cleaning),150,Sum of all issues addressed or rows removed during cleaning.
