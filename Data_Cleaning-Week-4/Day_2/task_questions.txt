@@ -8,7 +8,7 @@ Merge the two DataFrames on a shared key, but handle conflicts — what happens 
 appears in both sources with different name values? Write logic to decide which one wins and document your decision
 After merging, apply all 6 cleaning techniques (nulls, duplicates, casing, types, whitespace, outliers)
 Load the final unified dataset to both MySQL and CSV
-On a second run of your script, no duplicate rows should be inserted into SQLite
+On a second run of your script, no duplicate rows should be inserted into MySQL
 
 Task 2: Design a Data Quality Audit System on Top of an ETL Pipeline
 Instead of just cleaning data silently, your task is to build a data quality reporting layer around a full ETL pipeline:
@@ -16,7 +16,7 @@ Fetch 100 posts from https://jsonplaceholder.typicode.com/posts and load into Pa
 Before cleaning, programmatically detect and record every issue found — null counts per column, duplicate row count, type mismatches, out-of-range values, and inconsistent string formats
 Apply all necessary transformations and enrichments (word count, title casing, filtering, ranking)
 After cleaning, generate a structured audit report (saved as a .csv or printed as a formatted table) showing: how many issues existed, how many were fixed, and what the before/after row count is
-Load the clean data into SQLite
+Load the clean data into MySQL
 
 Task 3: Build a Modular, Logged ETL System with Full Enrichment and Idempotency
 This is your Month 1 capstone challenge. Design a production-style ETL system with the following strict requirements:
@@ -25,4 +25,4 @@ Extract data from at least one real public API with full error handling (try/exc
 In the transform step, engineer at least 3 new calculated columns (e.g., grade, rank, score category, word count, pass/fail, completion rate)
 Use groupby() to produce a printed summary table — mean, min, max grouped by at least one categorical column
 Add logging throughout — every function must print what it is doing, how many rows it received, and how many rows it output
-Load to both CSV (index=False) and SQLite using df.to_sql() — and ensure running the full pipeline twice does not create duplicate rows in the database
+Load to both CSV (index=False) and MySQL using df.to_sql() — and ensure running the full pipeline twice does not create duplicate rows in the database
