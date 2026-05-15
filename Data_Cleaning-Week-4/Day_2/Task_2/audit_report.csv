@@ -1,0 +1,7 @@
+Issue,Count Before Cleaning,Count Fixed
+Null Values in title,1,2
+Null Values in body,1,2
+Duplicate Rows,2,1
+Type Mismatch in userId,1,1
+Out of Range userId,1,101
+Inconsistent Title Format,101,0
