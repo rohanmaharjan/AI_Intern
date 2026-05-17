@@ -9,7 +9,7 @@ import os
 import pymysql
 from urllib.parse import quote_plus
 
-# load environmennt variables
+# load environment variables
 load_dotenv()
 
 # api link
