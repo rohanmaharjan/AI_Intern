@@ -1,0 +1,28 @@
+
+
+FULL EDA REPORT
+
+1 Dataset loaded from API
+
+2 Data cleaned and normalized
+
+3 Duplicate values removed
+
+4 Missing values handled
+
+5 Distribution patterns analyzed
+
+6 Correlation heatmap generated
+
+7 Group comparisons performed
+
+8 Outlier analysis completed
+
+9 Pairplot relationship investigated
+
+10 Insights extracted
+
+Final Conclusion:
+
+(Add your final insights here)
+
