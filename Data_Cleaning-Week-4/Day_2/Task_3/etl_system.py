@@ -7,7 +7,7 @@ import time
 from dotenv import load_dotenv
 import os
 from urllib.parse import quote_plus
-import pymysql
+
 
 # LOAD ENVIRONEMNET VARIABLES
 load_dotenv()
